@@ -1,5 +1,5 @@
 # SQWalk
-(In development)
+(In development, use at you own risk!)
 
 A Stochastic Quantum Walk simulator based on QuTip.
 
