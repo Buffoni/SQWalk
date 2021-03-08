@@ -17,8 +17,9 @@ from qutip import *
 
 # TODO: implement a discrete-time and a continuous-time class or two methods within the same class?
 
+
 class QWalker(object):
-    def __init__(self, adjacency, noise_param=0, sink_node=None, sink_rate=1.):
+    def __init__(self, adjacency, noise_param=0., sink_node=None, sink_rate=1.):
         self.adjacency = adjacency
         self.N = adjacency.shape[0]
         # degree vector representing the connectivity degree of each node
@@ -71,7 +72,7 @@ class QWalker(object):
         """
         if self.sink_node is not None:
             observables.append(basis(self.N + 1, self.sink_node) * basis(self.N + 1, self.sink_node).dag())
-        times = np.arange(1, time_samples + 1) * dt  #timesteps of the evolution
+        times = np.arange(1, time_samples + 1) * dt  # timesteps of the evolution
 
         return mesolve(self.quantum_hamiltonian, initial_quantum_state, times,
                        self.classical_hamiltonian, observables, options=opts)
