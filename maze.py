@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Maze class for quantum_maze_env
 
-@author: Nicola Dalla Pozza
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 from random import randrange, shuffle
