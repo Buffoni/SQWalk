@@ -3,7 +3,7 @@
 # SQWalk
 (In development, use at you own risk!)
 
-A Stochastic Quantum Walk simulator based on QuTip.
+A Stochastic Quantum Walk simulator based on QuTiP.
 
 To see the SQW class check ```sqwalk.py```, for an example of an application on a maze 
 network see the notebook ```Example.ipynb```, the maze network topology is defined in ```maze.py```.
