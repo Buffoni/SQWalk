@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from qutip import *
+from qutip import Qobj, basis, mesolve
 
 
 class SQWalker(object):
