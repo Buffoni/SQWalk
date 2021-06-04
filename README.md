@@ -20,8 +20,16 @@ network class, provided the adjacency matrix. It can deal both with Continuous-T
 Discrete-Time (or Coined) ([ref](https://arxiv.org/abs/1006.5556)) Quantum Walks, usage examples for both classes can be found in the tutorials.
 
 ### Install
-As of now you need to download the ```sqwalk.py``` file in the same directory where
-you intend to use it, packaging will come in the future. 
+Package still not available on pip. To install clone this repository and 
+install the package by running 
+```
+python3 -m pip install .
+```
+inside the directory. 
+
+The package and its dependecies are tested to run on Python 3.8, we recommend
+installing the package inside a conda env or a virtualenv to avoid conflicting 
+dependecies.
 
 Stay tuned!
 
