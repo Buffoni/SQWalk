@@ -12,9 +12,9 @@ numpy
 matplotlib
 ```
 
-The phyton implementation of the walker class is contained in ```sqwalk.py```.\
-The ```tutorials```  folder contains some tutorial notebooks to familiarize yourself with the
-walker class and review the principal fatures.\
+The implementation of the walker class is contained in ```sqwalk/objects.py```.\
+The ```tutorials```  folder contains some tutorial notebooks to familiarize yourself with this package
+and review the principal fatures.\
 SQWalk can be easily incorporated in any existing pipeline with any custom topology or 
 network class, provided the adjacency matrix. It can deal both with Continuous-Time ([ref](https://arxiv.org/abs/0905.2942)) and 
 Discrete-Time (or Coined) ([ref](https://arxiv.org/abs/1006.5556)) Quantum Walks, usage examples for both classes can be found in the tutorials.
