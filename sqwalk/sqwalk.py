@@ -1,24 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Stochastic quantum walker on QuTip.
-Class containing an open quantum system described by a Lindblad equation obtained from the adjacency matrix.
-
-Theoretical model:
-Whitfield, J. D., Rodríguez-Rosario, C. A., & Aspuru-Guzik, A. (2010).
-Quantum stochastic walks: A generalization of classical random walks and quantum walks.
-Physical Review A, 81(2), 022323.
-
-@author: Lorenzo Buffoni
-"""
 
 import numpy as np
 from qutip import *
 
-# TODO: implement a discrete-time and a continuous-time class or two methods within the same class?
 
+class SQWalker(object):
+    """
+    Stochastic quantum walker on QuTip.
+    Class containing an open quantum system described by a Lindblad equation obtained from the adjacency matrix.
 
-class QWalker(object):
+    Theoretical model:
+    Whitfield, J. D., Rodríguez-Rosario, C. A., & Aspuru-Guzik, A. (2010).
+    Quantum stochastic walks: A generalization of classical random walks and quantum walks.
+    Physical Review A, 81(2), 022323.
+
+    @author: Lorenzo Buffoni
+    """
     def __init__(self, adjacency, noise_param=0., sink_node=None, sink_rate=1.):
         self.adjacency = adjacency
         self.N = adjacency.shape[0]
