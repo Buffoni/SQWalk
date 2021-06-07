@@ -4,7 +4,7 @@
 
 (In development, use at you own risk!)
 
-A Stochastic Quantum Walk simulator based on [QuTiP](https://qutip.org).\
+A Stochastic Quantum Walk simulator based on [QuTiP](https://qutip.org).
 
 Dependencies:
 
@@ -14,10 +14,10 @@ numpy
 matplotlib
 ```
 
-The implementation of the walker class is contained in `sqwalk/objects.py`.\
+The implementation of the walker class is contained in `sqwalk/objects.py`.
 
 The `tutorials`  folder contains some tutorial notebooks to familiarize yourself with this package
-and review the principal futures.\
+and review the principal features.
 
 SQWalk can be easily incorporated in any existing pipeline with any custom
 topology or network class, provided with the adjacency matrix. It can deal both
