@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from qutip import Qobj, basis, mesolve
+from qutip import Qobj, basis, mesolve, Options
 
 
 class SQWalker(object):
@@ -30,6 +30,16 @@ class SQWalker(object):
         self.create_walker_from_graph(noise_param, sink_rate)
 
     def create_walker_from_graph(self, noise_param, sink_rate):
+        """ Creates the Hamiltonian and the Lindblad operators for the walker given an adjacency matrix
+        and other parameters.
+
+        Parameters
+        ----------
+        noise_param : float between 0 and 1
+            parameter controlling the 'quantumness' of the system (0 is fully quantum, 1 is fully classical)
+        sink_rate : float between 0 and 1
+            if a sink is present the trasfer rate from the sink_node to the sink (defaults to 1.)
+         """
         self.p = noise_param
         if self.sink_node is not None:
             # TODO: add check for directed graphs
@@ -46,20 +56,19 @@ class SQWalker(object):
         self.quantum_hamiltonian = H
         self.classical_hamiltonian = L
 
-    def run_walker(self, initial_quantum_state, time_samples, dt=1e-2, observables=[], opts=None):
+    def run_walker(self, initial_quantum_state, time_samples, dt=1e-2, observables=[], opts=Options(store_states=False, store_final_state=True)):
         """ Run the walker on the graph. The solver for the Lindblad master equation is mesolve from QuTip.
 
         Parameters
         ----------
-        initial_quantum_state : qutip.qobj.Qobj
+        initial_quantum_state : qutip.qobj.Qobj or integer specifying the initial node
             quantum state of the system at the beginning of the simulation
-        time_samples :
+        time_samples : integer
             number of time samples considered in the time equation
         dt : float (default 10**-2)
             single step time interval
         observables: list (default empty)
             list of observables to track during the dynamics.
-            If a sink is present in the maze an observable is created automatically.
         opts: qutip.Options (default None)
             options for QuTip's solver mesolve.
 
@@ -68,9 +77,17 @@ class SQWalker(object):
         (qutip.Result)
             return the final quantum state at the end of the quantum simulation.
         """
-        if self.sink_node is not None:
-            observables.append(basis(self.N + 1, self.sink_node) * basis(self.N + 1, self.sink_node).dag())
         times = np.arange(1, time_samples + 1) * dt  # timesteps of the evolution
+
+        # if the initial quantum state is specified as a node create the corresponding density matrix
+        if type(initial_quantum_state) == int:
+            density_matrix_value = np.zeros(self.N)
+            density_matrix_value[initial_quantum_state, initial_quantum_state] = 1
+            initial_quantum_state = Qobj(density_matrix_value)
+
+        # if a sink is present add it to the density matrix of the system
+        if self.sink_node is not None and initial_quantum_state.shape == (self.N, self.N):
+            initial_quantum_state = Qobj(np.pad(initial_quantum_state.data.toarray(), [(0, 1), (0, 1)], 'constant'))
 
         return mesolve(self.quantum_hamiltonian, initial_quantum_state, times,
                        self.classical_hamiltonian, observables, options=opts)
