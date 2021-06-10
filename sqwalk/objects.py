@@ -81,7 +81,7 @@ class SQWalker(object):
 
         # if the initial quantum state is specified as a node create the corresponding density matrix
         if type(initial_quantum_state) == int:
-            density_matrix_value = np.zeros(self.N)
+            density_matrix_value = np.zeros((self.N,self.N))
             density_matrix_value[initial_quantum_state, initial_quantum_state] = 1
             initial_quantum_state = Qobj(density_matrix_value)
 
