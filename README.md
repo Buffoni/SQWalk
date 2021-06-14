@@ -10,6 +10,7 @@ Dependencies:
 
 ```
 qutip
+qiskit
 numpy
 matplotlib
 ```
