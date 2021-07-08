@@ -7,14 +7,13 @@ import time
 
 class FakeBackend(BaseBackend):
     """This is a dummy backend just for transpile purposes."""
-
-    def __init__(self, time_alive=10):
+    def __init__(self, topology=None, gates=None, time_alive=10):
         """
         Args:
             configuration (BackendConfiguration): backend configuration
             time_alive (int): time to wait before returning result
         """
-        cmap = [[i,j] for i in range(3) for j in range(3)]
+        cmap = [[i, j] for i in range(3) for j in range(3)]
 
         DEFAULT_BASIS_GATES = sorted([
         'p', 'rx', 'ry', 'rz', 'id', 'x',
@@ -69,7 +68,7 @@ class FakeBackend(BaseBackend):
             {'job_id': job_id, 'result': [], 'status': 'COMPLETED'})
 
 
-def gate_decomposition(unitary):
+def gate_decomposition(unitary, topology=None, gates=None):
     N = unitary.shape[0]
     n_qubits = int(np.log2(N))
 
@@ -78,7 +77,7 @@ def gate_decomposition(unitary):
 
     circ = QuantumCircuit(n_qubits)
     circ.unitary(unitary, [i for i in range(n_qubits)])
-    backend = FakeBackend()
+    backend = FakeBackend(topology=topology, gates=gates)
     decomposition = transpile(circ, backend=backend, optimization_level=2)
     decomposition_depth = decomposition.depth()
     print('Success! Walker decomposed using', decomposition_depth, 'gates.')
