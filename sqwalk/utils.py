@@ -7,22 +7,25 @@ import time
 
 class FakeBackend(BaseBackend):
     """This is a dummy backend just for transpile purposes."""
-    def __init__(self, topology=None, gates=None, time_alive=10):
+    def __init__(self, n_qubits=3, topology=None, gates=None, time_alive=10):
         """
         Args:
             configuration (BackendConfiguration): backend configuration
             time_alive (int): time to wait before returning result
         """
-        cmap = [[i, j] for i in range(3) for j in range(3)]
+        if topology is None:
+            cmap = [[i, j] for i in range(n_qubits) for j in range(n_qubits)]
+        else:
+            cmap = topology
 
-        DEFAULT_BASIS_GATES = sorted([
-        'p', 'rx', 'ry', 'rz', 'id', 'x',
-        'y', 'z', 'h', 's', 'sdg', 'sx', 't', 'tdg', 'swap', 'cx',
-        'cy', 'cz', 'csx', 'cp', 'rxx', 'ryy',
-        'rzz', 'rzx', 'ccx', 'cswap', 'mcx', 'mcy', 'mcz', 'mcsx',
-        'mcphase', 'mcrx', 'mcry', 'mcrz',
-        'mcr', 'mcswap'
-        ])
+        if gates is None:
+            DEFAULT_BASIS_GATES = sorted(['p', 'rx', 'ry', 'rz', 'id', 'x',
+                                          'y', 'z', 'h', 's', 'sdg', 'sx', 't', 'tdg', 'swap', 'cx',
+                                          'cy', 'cz', 'csx', 'cp', 'rxx', 'ryy',
+                                          'rzz', 'rzx', 'ccx', 'cswap', 'mcx', 'mcy', 'mcz', 'mcsx',
+                                          'mcphase', 'mcrx', 'mcry', 'mcrz', 'mcr', 'mcswap'])
+        else:
+            DEFAULT_BASIS_GATES = sorted(gates)
 
         configuration = BackendConfiguration(
             backend_name='fake_backend',
@@ -77,7 +80,7 @@ def gate_decomposition(unitary, topology=None, gates=None):
 
     circ = QuantumCircuit(n_qubits)
     circ.unitary(unitary, [i for i in range(n_qubits)])
-    backend = FakeBackend(topology=topology, gates=gates)
+    backend = FakeBackend(n_qubits=n_qubits, topology=topology, gates=gates)
     decomposition = transpile(circ, backend=backend, optimization_level=2)
     decomposition_depth = decomposition.depth()
     print('Success! Walker decomposed using', decomposition_depth, 'gates.')
