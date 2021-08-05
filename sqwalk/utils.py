@@ -81,7 +81,7 @@ def gate_decomposition(unitary, topology=None, gates=None):
     circ = QuantumCircuit(n_qubits)
     circ.unitary(unitary, [i for i in range(n_qubits)])
     backend = FakeBackend(n_qubits=n_qubits, topology=topology, gates=gates)
-    decomposition = transpile(circ, backend=backend, optimization_level=2, approximation_degree=0.5)
+    decomposition = transpile(circ, backend=backend, optimization_level=2, approximation_degree=0.0)
     decomposition_depth = decomposition.depth()
     print('Success! Walker decomposed using', decomposition_depth, 'gates.')
     return decomposition
