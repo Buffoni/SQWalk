@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(name='sqwalk',
-      version='0.5.1',
+      version='0.5.2',
       description='A simple quantum walk simulator in python',
       long_description=long_description,
       long_description_content_type="text/markdown",
