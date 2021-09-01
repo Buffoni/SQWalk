@@ -11,7 +11,6 @@ setup(name='sqwalk',
       keywords='quantum walker stochastic decomposition',
       url='https://github.com/Buffoni/SQWalk',
       author='Lorenzo Buffoni',
-      author_email='lorenzo.buffoni@unifi.it',
       license='Apache License 2.0',
       packages=['sqwalk'],
       install_requires=[
