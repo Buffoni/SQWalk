@@ -1,5 +1,7 @@
 # SQWalk
 
+WARNING: This project has now been merged with [QWAK](https://github.com/JaimePSantos/QWAK) and it will now be updated there. This version is deprecated.
+
 [![Unitary Fund](https://img.shields.io/badge/Supported%20By-UNITARY%20FUND-brightgreen.svg?style=for-the-badge)](http://unitary.fund)
 [![PyPi Version](https://img.shields.io/pypi/v/sqwalk.svg?style=for-the-badge)](https://pypi.python.org/pypi/sqwalk/)
 
