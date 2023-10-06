@@ -5,8 +5,6 @@ WARNING: This project has now been merged with [QWAK](https://github.com/JaimePS
 [![Unitary Fund](https://img.shields.io/badge/Supported%20By-UNITARY%20FUND-brightgreen.svg?style=for-the-badge)](http://unitary.fund)
 [![PyPi Version](https://img.shields.io/pypi/v/sqwalk.svg?style=for-the-badge)](https://pypi.python.org/pypi/sqwalk/)
 
-In development, use with discretion.
-
 A Stochastic Quantum Walk simulator based on [QuTiP](https://qutip.org).
 
 Dependencies:
